@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Хурма вяжет — Магазин твоего уюта и вдохновения</title>
+    <!-- Google Fonts: Humanist Sans and Serif for a soft, professional look -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        /* CSS VARIABLES */
+        :root {
+            --persimmon: #D46A4F; /* Primary: Warm Orange/Terracotta */
+            --persimmon-light: #E89B88;
+            --emerald: #2D6A4F;    /* Secondary: Deep Emerald */
+            --emerald-light: #D8E2DC;
+            --bg-warm: #FAF7F2;    /* Creamy off-white */
+            --text-dark: #333333;
+            --text-muted: #555555;
+            --white: #FFFFFF;
+            --font-main: 'Nunito', sans-serif;
+            --font-heading: 'Lora', serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 24px;
+            --radius-sm: 12px;
+            --container: 1100px;
+        }
+
+        /* RESET & BASE */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { 
+            background-color: var(--bg-warm); 
+            color: var(--text-dark); 
+            font-family: var(--font-main); 
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; line-height: 1.2; }
+        p { font-weight: 400; color: var(--text-muted); }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; border-radius: var(--radius-sm); object-fit: cover; }
+
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 100px 0; }
+        
+        /* REUSABLE COMPONENTS */
+        .btn {
+            display: inline-block;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 700;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+            font-family: var(--font-main);
+            font-size: 1rem;
+        }
+
+        .btn-primary { 
+            background-color: var(--persimmon); 
+            color: var(--white); 
+            box-shadow: 0 4px 15px rgba(212, 106, 79, 0.3);
+        }
+        .btn-primary:hover { 
+            background-color: var(--persimmon-light); 
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 106, 79, 0.4);
+        }
+        .btn-primary:active { transform: translateY(0); }
+
+        .badge {
+            display: inline-block;
+            padding: 6px 16px;
+            background-color: var(--emerald-light);
+            color: var(--emerald);
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* SCROLL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* HEADER */
+        header { 
+            padding: 30px 0; 
+            position: absolute; 
+            width: 100%; 
+            z-index: 10; 
+        }
+        .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
+        .logo { 
+            font-family: var(--font-heading); 
+            font-size: 1.8rem; 
+            color: var(--persimmon); 
+            font-weight: 600; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .logo::before {
+            content: '';
+            width: 12px; height: 12px;
+            background-color: var(--emerald);
+            border-radius: 50%;
+        }
+        .main-nav a { font-weight: 600; font-size: 0.95rem; margin-left: 30px; }
+        .main-nav a:hover { color: var(--emerald); }
+
+        /* HERO SECTION */
+        .hero { 
+            min-height: 100vh; 
+            display: flex; 
+            align-items: center; 
+            padding-top: 100px;
+            background: radial-gradient(circle at top right, #fdfcfb, transparent);
+        }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; color: var(--text-dark); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; max-width: 500px; }
+        .hero-image-box { position: relative; }
+        .hero-image-box img { 
+            width: 100%; height: 500px; 
+            border-radius: var(--radius); 
+            box-shadow: 0 30px 60px rgba(0,0,0,0.1);
+        }
+
+        /* ABOUT SECTION */
+        .about { background-color: var(--white); border-radius: 80px 0 80px 0; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+        .about-text h2 { font-size: 2.8rem; margin-bottom: 20px; }
+        .about-text p { font-size: 1.1rem; margin-bottom: 20px; }
+        .about-img img { height: 450px; width: 100%; border-radius: var(--radius); }
+
+        /* CATEGORIES */
+        .categories-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
+            gap: 30px; 
+            margin-top: 50px; 
+        }
+        .category-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
+            text-align: center;
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .category-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .category-card img { width: 100%; height: 200px; border-radius: var(--radius-sm); margin-bottom: 20px; }
+        .category-card h3 { margin-bottom: 10px; color: var(--persimmon); }
+
+        /* ADVANTAGES */
+        .advantages { background-color: #F3EFE9; }
+        .adv-header { text-align: center; margin-bottom: 60px; }
+        .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .adv-item { text-align: center; }
+        .adv-item h4 { font-family: var(--font-main); font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
+        .adv-band { width: 100%; height: 300px; margin-top: 60px; border-radius: var(--radius); overflow: hidden; }
+        .adv-band img { width: 100%; height: 100%; }
+
+        /* AUDIENCE */
+        .audience-header { text-align: center; margin-bottom: 50px; }
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .audience-card { position: relative; overflow: hidden; border-radius: var(--radius); height: 350px; }
+        .audience-card img { width: 100%; height: 100%; transition: transform 0.5s ease; }
+        .audience-card:hover img { transform: scale(1.1); }
+        .audience-overlay { 
+            position: absolute; bottom: 0; left: 0; right: 0; 
+            padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); 
+            color: var(--white); 
+        }
+        .audience-overlay h3 { color: var(--white); font-family: var(--font-main); font-weight: 600; font-size: 1.2rem; }
+
+        /* ATMOSPHERE */
+        .atmosphere { text-align: center; }
+        .atmosphere-img { 
+            width: 100%; height: 600px; 
+            border-radius: var(--radius); 
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1); 
+            margin-top: 40px;
+        }
+
+        /* FINAL CTA */
+        .final-cta { text-align: center; }
+        .cta-box { 
+            background: var(--emerald); 
+            padding: 80px 40px; 
+            border-radius: var(--radius); 
+            color: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+        }
+        .cta-box h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 30px; font-size: 1.1rem; }
+        .cta-image { height: 350px; width: 100%; border-radius: var(--radius-sm); }
+        .btn-white { background: var(--white); color: var(--emerald); }
+        .btn-white:hover { background: var(--bg-warm); }
+
+        /* FOOTER */
+        footer { padding: 80px 0 40px; background: #2b2b2b; color: #a0a0a0; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .footer-logo { color: var(--persimmon); font-size: 1.5rem; margin-bottom: 20px; font-family: var(--font-heading); }
+        .footer-nav h5 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-nav li { margin-bottom: 12px; }
+        .footer-nav a:hover { color: var(--persimmon); }
+        .footer-decoration { width: 100%; height: 60px; opacity: 0.1; background-image: url('https://www.transparenttextures.com/patterns/knitted-net.png'); }
+
+        /* RESPONSIVE */
+        @media (max-width: 992px) {
+            .hero-grid, .about-grid, .cta-box { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p, .about-text p { margin-left: auto; margin-right: auto; }
+            .audience-grid { grid-template-columns: 1fr; }
+            .hero-image-box { order: -1; }
+            .about-img { order: -1; }
+            .cta-image { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .reveal { transition: none; opacity: 1; transform: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-wrapper">
+            <a href="#" class="logo">Хурма вяжет</a>
+            <nav class="main-nav">
+                <a href="#about">О нас</a>
+                <a href="#catalog">Каталог</a>
+                <a href="#advantages">Почему мы</a>
+                <a href="#" class="btn btn-primary" style="padding: 10px 25px; margin-left: 20px;">Магазин</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-grid">
+                <div class="hero-content reveal">
+                    <span class="badge">Ручная работа</span>
+                    <h1>Вязание как способ замедлиться</h1>
+                    <p>«Хурма вяжет» — это пространство для тех, кто ценит тактильность, натуральные материалы и тихую радость созидания.</p>
+                    <a href="#catalog" class="btn btn-primary">Перейти в каталог</a>
+                </div>
+                <div class="hero-image-box reveal">
+                    <img src="https://images.unsplash.com/photo-1584992236310-6edddc08acff?auto=format&fit=crop&q=80&w=800" alt="Атмосфера вязания: руки в теплом свитере держат спицы">
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT -->
+        <section class="about section-padding" id="about">
+            <div class="container about-grid">
+                <div class="about-img reveal">
+                    <img src="https://images.unsplash.com/photo-1616606048109-d9d134b223d6?auto=format&fit=crop&q=80&w=800" alt="Уютное рабочее место с пряжей и инструментами">
+                </div>
+                <div class="about-text reveal">
+                    <span class="badge" style="background-color: #fdf2f0;">Наша философия</span>
+                    <h2>Любовь в каждой петле</h2>
+                    <p>Мы верим, что в мире высоких скоростей вязание остается островком спокойствия. Наша миссия — обеспечить вас инструментами, которые не просто работают, а приносят эстетическое и тактильное удовольствие.</p>
+                    <p>Мы тщательно отбираем пряжу с честным составом и инструменты, которые станут продолжением ваших рук.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRODUCT CATEGORIES -->
+        <section class="section-padding" id="catalog">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <h2 style="font-size: 2.5rem;">Все для творчества</h2>
+                </div>
+                <div class="categories-grid">
+                    <div class="category-card reveal">
+                        <img src="https://images.unsplash.com/photo-1628151015968-3a4429e9ef04?auto=format&fit=crop&q=80&w=400" alt="Мотки качественной шерстяной пряжи">
+                        <h3>Пряжа</h3>
+                        <p>Меринос, альпака и хлопок в самых нежных оттенках.</p>
+                    </div>
+                    <div class="category-card reveal">
+                        <img src="https://images.unsplash.com/photo-1621343715560-f4639942a77a?auto=format&fit=crop&q=80&w=400" alt="Деревянные вязальные спицы">
+                        <h3>Спицы</h3>
+                        <p>Гладкие деревянные и стальные спицы для идеального скольжения.</p>
+                    </div>
+                    <div class="category-card reveal">
+                        <img src="https://images.unsplash.com/photo-1610473069153-480928a3075c?auto=format&fit=crop&q=80&w=400" alt="Эргономичные крючки для вязания">
+                        <h3>Крючки</h3>
+                        <p>Эргономичные ручки для тех, кто может вязать часами.</p>
+                    </div>
+                    <div class="category-card reveal">
+                        <img src="https://images.unsplash.com/photo-1591143825944-933333333333?auto=format&fit=crop&q=80&w=400" alt="Аксессуары для вязания: маркеры, ножницы">
+                        <h3>Аксессуары</h3>
+                        <p>Маркеры, ножницы и сантиметры — красивые мелочи.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADVANTAGES -->
+        <section class="advantages section-padding" id="advantages">
+            <div class="container">
+                <div class="adv-header reveal">
+                    <span class="badge">Преимущества</span>
+                    <h2>Почему выбирают Хурму</h2>
+                </div>
+                <div class="adv-grid">
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">01. Состав</h4>
+                        <p>Только натуральные волокна. Мы лично тестируем каждую партию на износостойкость.</p>
+                    </div>
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">02. Комфорт</h4>
+                        <p>Инструменты, которые не утомляют кисти и превращают процесс в отдых.</p>
+                    </div>
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">03. Поддержка</h4>
+                        <p>Мы поможем выбрать пряжу под ваш проект, даже если вы только учитесь.</p>
+                    </div>
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">04. Эко-подход</h4>
+                        <p>Бережная упаковка без лишнего пластика — забота о природе и эстетика.</p>
+                    </div>
+                </div>
+                <div class="adv-band reveal">
+                    <img src="https://images.unsplash.com/photo-1583209814683-c023dd2f3cc3?auto=format&fit=crop&q=80&w=1200" alt="Крупный план переплетения нитей">
+                </div>
+            </div>
+        </section>
+
+        <!-- WHO THIS IS FOR -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="audience-header reveal">
+                    <h2>Вязание объединяет</h2>
+                    <p>Наш магазин создан для каждого, кто ищет гармонию</p>
+                </div>
+                <div class="audience-grid">
+                    <div class="audience-card reveal">
+                        <img src="https://images.unsplash.com/photo-1604537466158-719b1972feb8?auto=format&fit=crop&q=80&w=400" alt="Новичок в вязании">
+                        <div class="audience-overlay">
+                            <h3>Для начинающих</h3>
+                            <p>Понятные наборы и бережные советы.</p>
+                        </div>
+                    </div>
+                    <div class="audience-card reveal">
+                        <img src="https://images.unsplash.com/photo-1522069169874-c58ec4b76be5?auto=format&fit=crop&q=80&w=400" alt="Опытный мастер">
+                        <div class="audience-overlay">
+                            <h3>Для профессионалов</h3>
+                            <p>Эксклюзивные составы и редкие инструменты.</p>
+                        </div>
+                    </div>
+                    <div class="audience-card reveal">
+                        <img src="https://images.unsplash.com/photo-1516667526021-9549f3e1b072?auto=format&fit=crop&q=80&w=400" alt="Релаксация через хобби">
+                        <div class="audience-overlay">
+                            <h3>Для искателей покоя</h3>
+                            <p>Медитативный процесс как форма терапии.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATMOSPHERE -->
+        <section class="section-padding atmosphere">
+            <div class="container">
+                <span class="badge">Вдохновение</span>
+                <h2>Почувствуйте ритм</h2>
+                <img src="https://images.unsplash.com/photo-1519631128182-433895475ffd?auto=format&fit=crop&q=80&w=1200" class="atmosphere-img reveal" alt="Уютная зимняя атмосфера, чай и вязание">
+            </div>
+        </section>
+
+        <!-- FINAL CTA -->
+        <section class="section-padding final-cta">
+            <div class="container">
+                <div class="cta-box reveal">
+                    <div class="cta-text">
+                        <h2>Готовы начать свою историю?</h2>
+                        <p>Ваш первый (или сотый) проект начинается с качественного выбора. Мы подготовили всё, что нужно для вашего вдохновения.</p>
+                        <a href="#" class="btn btn-white">За покупками</a>
+                    </div>
+                    <img src="https://images.unsplash.com/photo-1595079676339-1534801ad6cf?auto=format&fit=crop&q=80&w=600" class="cta-image" alt="Процесс начала нового вязания">
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-info">
+                    <div class="footer-logo">Хурма вяжет</div>
+                    <p>Магазин для тех, кто создает тепло своими руками. Мы доставляем радость и качественные материалы по всей стране.</p>
+                </div>
+                <div class="footer-nav">
+                    <h5>Навигация</h5>
+                    <ul>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#catalog">Пряжа</a></li>
+                        <li><a href="#advantages">Почему мы</a></li>
+                        <li><a href="#">Доставка</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h5>Контакты</h5>
+                    <ul>
+                        <li>г. Москва, ул. Уютная, 14</li>
+                        <li>hello@hurma-knits.ru</li>
+                        <li>+7 (999) 123-45-67</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-decoration"></div>
+            <div style="text-align: center; font-size: 0.8rem; margin-top: 40px;">
+                &copy; 2024 Хурма вяжет. Сделано с теплом.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth Reveal Logic
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
