@@ -11,10 +11,13 @@
     <meta property="og:image" content="hurma-knit-006-2.jpg">
     <title>Хурма вяжет — Магазин твоего уюта и вдохновения</title>
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧶</text></svg>">
+    <link rel="canonical" href="https://hurma-knits.ru">
     <!-- Google Fonts: Humanist Sans and Serif for a soft, professional look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- Material Symbols Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
     <!-- Schema.org Organization -->
     <script type="application/ld+json">
     {
@@ -42,11 +45,13 @@
     <style>
         /* CSS VARIABLES */
         :root {
-            --persimmon: #D46A4F; /* Primary: Warm Orange/Terracotta */
-            --persimmon-light: #E89B88;
-            --emerald: #2D6A4F;    /* Secondary: Deep Emerald */
-            --emerald-light: #D8E2DC;
-            --bg-warm: #FAF7F2;    /* Creamy off-white */
+            --primary: #FE6900;       /* Primary: Orange */
+            --primary-light: #FF8A33;
+            --sage: #753BA2;          /* Secondary: Purple */
+            --sage-light: #D8C4E8;
+            --bg-warm: #E4E4E4;       /* Creamy off-white */
+            --bg-light: #ACACAC;      /* Light gray */
+            --bg-dark: #221810;       /* Dark background */
             --text-dark: #333333;
             --text-muted: #555555;
             --white: #FFFFFF;
@@ -91,23 +96,23 @@
             font-size: 1rem;
         }
 
-        .btn-primary { 
-            background-color: var(--persimmon); 
-            color: var(--white); 
-            box-shadow: 0 4px 15px rgba(212, 106, 79, 0.3);
+        .btn-primary {
+            background-color: var(--primary);
+            color: var(--white);
+            box-shadow: 0 4px 15px rgba(254, 105, 0, 0.3);
         }
-        .btn-primary:hover { 
-            background-color: var(--persimmon-light); 
+        .btn-primary:hover {
+            background-color: var(--primary-light);
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 106, 79, 0.4);
+            box-shadow: 0 6px 20px rgba(254, 105, 0, 0.4);
         }
         .btn-primary:active { transform: translateY(0); }
 
         .badge {
             display: inline-block;
             padding: 6px 16px;
-            background-color: var(--emerald-light);
-            color: var(--emerald);
+            background-color: var(--sage-light);
+            color: var(--sage);
             border-radius: 20px;
             font-size: 0.85rem;
             font-weight: 700;
@@ -128,30 +133,106 @@
         }
 
         /* HEADER */
-        header { 
-            padding: 30px 0; 
-            position: absolute; 
-            width: 100%; 
-            z-index: 10; 
+        header {
+            padding: 20px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 10;
+            background: rgba(34, 24, 16, 0.7);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        header.scrolled {
+            padding: 15px 0;
+            background: rgba(34, 24, 16, 0.95);
         }
         .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
-        .logo { 
-            font-family: var(--font-heading); 
-            font-size: 1.8rem; 
-            color: var(--persimmon); 
-            font-weight: 600; 
+        .logo {
+            font-family: var(--font-main);
+            font-size: 1.8rem;
+            color: var(--white);
+            font-weight: 700;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .logo::before {
             content: '';
             width: 12px; height: 12px;
-            background-color: var(--emerald);
+            background-color: var(--primary);
             border-radius: 50%;
         }
-        .main-nav a { font-weight: 600; font-size: 0.95rem; margin-left: 30px; }
-        .main-nav a:hover { color: var(--emerald); }
+        .main-nav {
+            display: flex;
+            align-items: center;
+            gap: 0;
+        }
+        .main-nav a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin: 0 20px;
+            color: var(--white);
+            transition: var(--transition);
+        }
+        .main-nav a:hover { color: var(--primary); }
+
+        /* BREADCRUMBS */
+        .breadcrumbs {
+            padding: 100px 0 20px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+        .breadcrumbs a {
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .breadcrumbs a:hover {
+            color: var(--primary);
+        }
+        .breadcrumbs span {
+            margin: 0 8px;
+            color: var(--text-muted);
+        }
+        .breadcrumbs .current {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* BACK TO TOP BUTTON */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(254, 105, 0, 0.3);
+        }
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .back-to-top:hover {
+            background: var(--primary-light);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(254, 105, 0, 0.4);
+        }
+        .back-to-top .material-symbols-outlined {
+            font-size: 24px;
+        }
 
         /* HERO SECTION */
         .hero {
@@ -175,18 +256,29 @@
             object-fit: cover;
             object-position: center top;
         }
-        .hero-bg::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(to right, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.7) 50%, rgba(250, 247, 242, 0.3) 100%);
-        }
         .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
-        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; color: var(--text-dark); }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; max-width: 500px; }
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            background: rgba(34, 24, 16, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 40px;
+            border-radius: var(--radius);
+            max-width: 600px;
+        }
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            margin-bottom: 25px;
+            color: var(--white);
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+        }
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            max-width: 500px;
+            color: var(--white);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+        }
         .hero-image-box { display: none; }
 
         /* ABOUT SECTION */
@@ -213,14 +305,14 @@
         }
         .category-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
         .category-card img { width: 100%; height: 200px; border-radius: var(--radius-sm); margin-bottom: 20px; }
-        .category-card h3 { margin-bottom: 10px; color: var(--persimmon); }
+        .category-card h3 { margin-bottom: 10px; color: var(--primary); }
 
         /* ADVANTAGES */
         .advantages { background-color: #F3EFE9; }
         .adv-header { text-align: center; margin-bottom: 60px; }
         .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
         .adv-item { text-align: center; }
-        .adv-item h4 { font-family: var(--font-main); font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
+        .adv-item h4 { font-family: var(--font-main); font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; color: var(--sage); }
         .adv-band { width: 100%; height: 300px; margin-top: 60px; border-radius: var(--radius); overflow: hidden; }
         .adv-band img { width: 100%; height: 100%; }
 
@@ -230,12 +322,13 @@
         .audience-card { position: relative; overflow: hidden; border-radius: var(--radius); height: 350px; }
         .audience-card img { width: 100%; height: 100%; transition: transform 0.5s ease; }
         .audience-card:hover img { transform: scale(1.1); }
-        .audience-overlay { 
-            position: absolute; bottom: 0; left: 0; right: 0; 
-            padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); 
-            color: var(--white); 
+        .audience-overlay {
+            position: absolute; bottom: 0; left: 0; right: 0;
+            padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: var(--white);
         }
         .audience-overlay h3 { color: var(--white); font-family: var(--font-main); font-weight: 600; font-size: 1.2rem; }
+        .audience-overlay p { color: var(--white); }
 
         /* TESTIMONIALS */
         .testimonials { background-color: var(--white); }
@@ -248,14 +341,32 @@
         }
         .testimonial-card {
             background: var(--bg-warm);
-            padding: 35px;
+            padding: 40px 30px;
             border-radius: var(--radius);
             transition: var(--transition);
             border: 1px solid rgba(0,0,0,0.03);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
         .testimonial-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .testimonial-avatar {
+            width: 144px;
+            height: 144px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 25px;
+            border: 4px solid var(--primary);
+            flex-shrink: 0;
+        }
+        .testimonial-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
         .testimonial-content p {
             font-size: 1.1rem;
@@ -267,34 +378,21 @@
         .testimonial-content p::before {
             content: '"';
             font-size: 3rem;
-            color: var(--persimmon);
+            color: var(--primary);
             line-height: 1;
             display: block;
             margin-bottom: -15px;
             opacity: 0.5;
         }
         .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        .author-avatar {
-            width: 50px;
-            height: 50px;
-            background: var(--persimmon);
-            color: var(--white);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
+            margin-top: auto;
         }
         .author-info h4 {
             font-family: var(--font-main);
             font-weight: 700;
             color: var(--text-dark);
-            margin-bottom: 3px;
+            margin-bottom: 5px;
+            font-size: 1.2rem;
         }
         .author-info span {
             font-size: 0.9rem;
@@ -312,10 +410,10 @@
 
         /* FINAL CTA */
         .final-cta { text-align: center; }
-        .cta-box { 
-            background: var(--emerald); 
-            padding: 80px 40px; 
-            border-radius: var(--radius); 
+        .cta-box {
+            background: var(--sage);
+            padding: 80px 40px;
+            border-radius: var(--radius);
             color: var(--white);
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -326,17 +424,452 @@
         .cta-box h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 20px; }
         .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 30px; font-size: 1.1rem; }
         .cta-image { height: 350px; width: 100%; border-radius: var(--radius-sm); }
-        .btn-white { background: var(--white); color: var(--emerald); }
+        .btn-white { background: var(--white); color: var(--sage); }
         .btn-white:hover { background: var(--bg-warm); }
 
         /* FOOTER */
-        footer { padding: 80px 0 40px; background: #2b2b2b; color: #a0a0a0; }
+        footer { padding: 80px 0 40px; background: var(--bg-dark); color: #a0a0a0; }
         .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
-        .footer-logo { color: var(--persimmon); font-size: 1.5rem; margin-bottom: 20px; font-family: var(--font-heading); }
+        .footer-logo { color: var(--primary); font-size: 1.5rem; margin-bottom: 20px; font-family: var(--font-heading); }
         .footer-nav h5 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; }
         .footer-nav li { margin-bottom: 12px; }
-        .footer-nav a:hover { color: var(--persimmon); }
+        .footer-nav a:hover { color: var(--primary); }
         .footer-decoration { width: 100%; height: 60px; opacity: 0.1; background-image: url('https://www.transparenttextures.com/patterns/knitted-net.png'); }
+
+        /* MOBILE MENU & ICONS */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+        .mobile-menu-btn .material-symbols-outlined {
+            font-size: 28px;
+            color: var(--white);
+        }
+
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-warm);
+            z-index: 1000;
+            padding: 80px 20px 40px;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .mobile-nav.active {
+            display: flex;
+        }
+        .mobile-nav a {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .mobile-nav-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .mobile-nav-close .material-symbols-outlined {
+            font-size: 32px;
+            color: var(--text-dark);
+        }
+
+        .header-icons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .icon-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        .icon-btn:hover {
+            background: rgba(254, 105, 0, 0.1);
+        }
+        .icon-btn .material-symbols-outlined {
+            font-size: 24px;
+            color: var(--white);
+        }
+        .icon-btn .badge-count {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            width: 18px;
+            height: 18px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 10px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(34, 24, 16, 0.7);
+        }
+
+        /* SEARCH OVERLAY */
+        .search-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            align-items: flex-start;
+            justify-content: center;
+            padding-top: 100px;
+        }
+        .search-overlay.active {
+            display: flex;
+        }
+        .search-box {
+            width: 90%;
+            max-width: 600px;
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius);
+            position: relative;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 15px 50px 15px 20px;
+            font-size: 1.1rem;
+            border: 2px solid var(--bg-light);
+            border-radius: var(--radius-sm);
+            font-family: var(--font-main);
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+        .search-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        .search-close .material-symbols-outlined {
+            font-size: 24px;
+            color: var(--text-muted);
+        }
+        .search-results {
+            margin-top: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        .search-result-item {
+            padding: 15px;
+            border-bottom: 1px solid var(--bg-light);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .search-result-item:hover {
+            background: var(--bg-warm);
+        }
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        .search-result-title {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        .search-result-category {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        .search-no-results {
+            text-align: center;
+            padding: 30px;
+            color: var(--text-muted);
+        }
+
+        /* CART OVERLAY */
+        .cart-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 100%;
+            max-width: 450px;
+            height: 100%;
+            background: var(--white);
+            z-index: 2000;
+            box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+        .cart-overlay.active {
+            display: block;
+            transform: translateX(0);
+        }
+        .cart-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--bg-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .cart-header h3 {
+            font-family: var(--font-main);
+            font-size: 1.3rem;
+            color: var(--text-dark);
+        }
+        .cart-close {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+        .cart-close .material-symbols-outlined {
+            font-size: 28px;
+            color: var(--text-muted);
+        }
+        .cart-items {
+            padding: 20px;
+            max-height: calc(100vh - 250px);
+            overflow-y: auto;
+        }
+        .cart-item {
+            display: flex;
+            gap: 15px;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--bg-light);
+        }
+        .cart-item:last-child {
+            border-bottom: none;
+        }
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            border-radius: var(--radius-sm);
+            object-fit: cover;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .cart-item-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .cart-qty-btn {
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--bg-light);
+            background: var(--white);
+            border-radius: 5px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+        .cart-qty-btn:hover {
+            background: var(--bg-warm);
+            border-color: var(--primary);
+        }
+        .cart-qty {
+            font-weight: 600;
+            min-width: 30px;
+            text-align: center;
+        }
+        .cart-item-remove {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+        .cart-item-remove:hover {
+            color: #e74c3c;
+        }
+        .cart-footer {
+            padding: 20px;
+            border-top: 1px solid var(--bg-light);
+            background: var(--bg-warm);
+        }
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .cart-total-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .cart-total-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        .cart-empty {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+        }
+        .cart-empty .material-symbols-outlined {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* NEWSLETTER FORM */
+        .newsletter {
+            background: var(--sage);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .newsletter h2 {
+            color: var(--white);
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        .newsletter p {
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+        .newsletter-form {
+            display: flex;
+            gap: 15px;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+        .newsletter-input {
+            flex: 1;
+            padding: 16px 20px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-family: var(--font-main);
+        }
+        .newsletter-input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.3);
+        }
+        .newsletter-btn {
+            padding: 16px 36px;
+            background: var(--white);
+            color: var(--sage);
+            border: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            font-family: var(--font-main);
+        }
+        .newsletter-btn:hover {
+            background: var(--bg-warm);
+            transform: translateY(-2px);
+        }
+        .newsletter-success {
+            display: none;
+            color: var(--white);
+            font-size: 1.2rem;
+            margin-top: 20px;
+        }
+        .newsletter-success.show {
+            display: block;
+        }
+
+        /* CLICK ANIMATIONS */
+        .btn, .icon-btn, .cart-qty-btn, .category-card, .testimonial-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(0);
+            animation: ripple-animation 0.6s linear;
+            pointer-events: none;
+        }
+        @keyframes ripple-animation {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+        .btn:active, .icon-btn:active, .cart-qty-btn:active {
+            transform: scale(0.95);
+        }
+        .category-card:active, .testimonial-card:active {
+            transform: scale(0.98);
+        }
+
+        /* TOOLTIP */
+        .tooltip {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip-text {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-dark);
+            color: var(--white);
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            white-space: nowrap;
+            z-index: 1000;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .tooltip-text::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: var(--bg-dark);
+        }
+        .tooltip:hover .tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
 
         /* RESPONSIVE */
         @media (max-width: 992px) {
@@ -349,6 +882,20 @@
             .footer-grid { grid-template-columns: 1fr; gap: 40px; }
         }
 
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            .main-nav { display: none; }
+            .header-icons { display: flex; }
+            .hero-grid { grid-template-columns: 1fr; text-align: center; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content p { font-size: 1rem; margin-left: auto; margin-right: auto; }
+            .categories-grid { grid-template-columns: 1fr; }
+            .adv-grid { grid-template-columns: 1fr; }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .atmosphere-grid { grid-template-columns: 1fr; }
+            .section-padding { padding: 60px 0; }
+        }
+
         @media (prefers-reduced-motion: reduce) {
             .reveal { transition: none; opacity: 1; transform: none; }
         }
@@ -358,15 +905,77 @@
 
     <header>
         <div class="container nav-wrapper">
-            <a href="#" class="logo">Хурма вяжет</a>
+            <a href="#" class="logo">ХУРМА ВЯЖЕТ</a>
             <nav class="main-nav">
                 <a href="#about">О нас</a>
                 <a href="#catalog">Каталог</a>
                 <a href="#advantages">Почему мы</a>
                 <a href="#" class="btn btn-primary" style="padding: 10px 25px; margin-left: 20px;">Магазин</a>
             </nav>
+            <div class="header-icons">
+                <div class="tooltip">
+                    <button class="icon-btn" onclick="openSearch()" aria-label="Поиск">
+                        <span class="material-symbols-outlined">search</span>
+                    </button>
+                    <span class="tooltip-text">Поиск товаров</span>
+                </div>
+                <div class="tooltip">
+                    <button class="icon-btn" style="position: relative;" onclick="toggleCart()" aria-label="Корзина">
+                        <span class="material-symbols-outlined">shopping_bag</span>
+                        <span class="badge-count" id="cartCount">0</span>
+                    </button>
+                    <span class="tooltip-text">Корзина</span>
+                </div>
+                <div class="tooltip">
+                    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Меню">
+                        <span class="material-symbols-outlined">menu</span>
+                    </button>
+                    <span class="tooltip-text">Меню</span>
+                </div>
+            </div>
         </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <nav class="mobile-nav" id="mobileNav">
+        <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Закрыть меню">
+            <span class="material-symbols-outlined">close</span>
+        </button>
+        <a href="#about" onclick="toggleMobileMenu()">О нас</a>
+        <a href="#catalog" onclick="toggleMobileMenu()">Каталог</a>
+        <a href="#advantages" onclick="toggleMobileMenu()">Почему мы</a>
+        <a href="#testimonials" onclick="toggleMobileMenu()">Отзывы</a>
+        <a href="#" class="btn btn-primary" style="margin-top: 20px;">Магазин</a>
+    </nav>
+
+    <!-- Search Overlay -->
+    <div class="search-overlay" id="searchOverlay" onclick="closeSearch(event)">
+        <div class="search-box" onclick="event.stopPropagation()">
+            <input type="text" placeholder="Поиск товаров..." id="searchInput">
+            <button class="search-close" onclick="closeSearch()" aria-label="Закрыть поиск">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+            <div class="search-results" id="searchResults"></div>
+        </div>
+    </div>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cartOverlay">
+        <div class="cart-header">
+            <h3>Корзина</h3>
+            <button class="cart-close" onclick="toggleCart()" aria-label="Закрыть корзину">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+        <div class="cart-items" id="cartItems"></div>
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span class="cart-total-label">Итого:</span>
+                <span class="cart-total-value" id="cartTotal">0 ₽</span>
+            </div>
+            <button class="btn btn-primary" style="width: 100%;" onclick="checkout()">Оформить заказ</button>
+        </div>
+    </div>
 
     <main>
         <!-- HERO -->
@@ -386,6 +995,15 @@
                 </div>
             </div>
         </section>
+
+        <!-- BREADCRUMBS -->
+        <div class="container">
+            <nav class="breadcrumbs">
+                <a href="#">Главная</a>
+                <span>/</span>
+                <span class="current">Каталог</span>
+            </nav>
+        </div>
 
         <!-- ABOUT -->
         <section class="about section-padding" id="about">
@@ -442,19 +1060,19 @@
                 </div>
                 <div class="adv-grid">
                     <div class="adv-item reveal">
-                        <h4 style="color: var(--emerald);">01. Состав</h4>
+                        <h4>01. Состав</h4>
                         <p>Только натуральные волокна. Мы лично тестируем каждую партию на износостойкость.</p>
                     </div>
                     <div class="adv-item reveal">
-                        <h4 style="color: var(--emerald);">02. Комфорт</h4>
+                        <h4>02. Комфорт</h4>
                         <p>Инструменты, которые не утомляют кисти и превращают процесс в отдых.</p>
                     </div>
                     <div class="adv-item reveal">
-                        <h4 style="color: var(--emerald);">03. Поддержка</h4>
+                        <h4>03. Поддержка</h4>
                         <p>Мы поможем выбрать пряжу под ваш проект, даже если вы только учитесь.</p>
                     </div>
                     <div class="adv-item reveal">
-                        <h4 style="color: var(--emerald);">04. Эко-подход</h4>
+                        <h4>04. Эко-подход</h4>
                         <p>Бережная упаковка без лишнего пластика — забота о природе и эстетика.</p>
                     </div>
                 </div>
@@ -507,11 +1125,13 @@
                 </div>
                 <div class="testimonials-grid">
                     <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+                        <div class="testimonial-avatar">
+                            <img src="hurma-knit-022.JPG" alt="Фото Анны М., довольной клиентки магазина Хурма вяжет" loading="lazy" itemprop="image">
+                        </div>
                         <div class="testimonial-content" itemprop="reviewBody">
-                            <p>"Пряжа от Хурмы — это любовь с первого мотка. Цвета невероятные, а на ощупь просто мечта. Связала свой первый свитер и не могу остановиться!"</p>
+                            <p>"Пряжа от Хурмы — это любовь с первого мотка. Цвета невероятные, а на ощупь просто мечта. Связала свое первое платье и не могу остановиться!"</p>
                         </div>
                         <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <img src="hurma-knit-022.JPG" alt="Фото Анны М., довольной клиентки магазина Хурма вяжет" class="author-avatar" style="border-radius: 50%; object-fit: cover;" loading="lazy" itemprop="image">
                             <div class="author-info">
                                 <h4 itemprop="name">Анна М.</h4>
                                 <span>Участница проекта "Осень в моих руках"</span>
@@ -519,11 +1139,13 @@
                         </div>
                     </div>
                     <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+                        <div class="testimonial-avatar">
+                            <img src="hurma-knit-023-2.jpg" alt="Фото Марины К., участницы совместного вязания" loading="lazy" itemprop="image">
+                        </div>
                         <div class="testimonial-content" itemprop="reviewBody">
                             <p>"Совместный проект с девочками из Хурмы вдохновил меня на новые идеи. Спицы идеально скользят, а поддержка сообщества бесценна."</p>
                         </div>
                         <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <img src="hurma-knit-023-2.jpg" alt="Фото Марины К., участницы совместного вязания" class="author-avatar" style="border-radius: 50%; object-fit: cover;" loading="lazy" itemprop="image">
                             <div class="author-info">
                                 <h4 itemprop="name">Марина К.</h4>
                                 <span>Участница совместного вязания</span>
@@ -531,11 +1153,13 @@
                         </div>
                     </div>
                     <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+                        <div class="testimonial-avatar">
+                            <img src="hurma-knit-031.jpg" alt="Фото Елены В., постоянной клиентки магазина" loading="lazy" itemprop="image">
+                        </div>
                         <div class="testimonial-content" itemprop="reviewBody">
                             <p>"Нашла здесь не только материалы, но и друзей. Каждый мастер-класс — это погружение в атмосферу уюта и творчества. Рекомендую всем!"</p>
                         </div>
                         <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
-                            <img src="hurma-knit-021.jpg" alt="Фото Елены В., постоянной клиентки магазина" class="author-avatar" style="border-radius: 50%; object-fit: cover;" loading="lazy" itemprop="image">
                             <div class="author-info">
                                 <h4 itemprop="name">Елена В.</h4>
                                 <span>Постоянная клиентка</span>
@@ -577,6 +1201,53 @@
                         <a href="#" class="btn btn-white">За покупками</a>
                     </div>
                     <img src="hurma-knit-030.jpg" class="cta-image" alt="Процесс начала нового вязания с пряжей" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ -->
+        <section class="section-padding">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 50px;">
+                    <span class="badge">Частые вопросы</span>
+                    <h2>Ответы на ваши вопросы</h2>
+                </div>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 30px;">
+                    <div class="faq-item reveal">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">Какой состав пряжи?</h3>
+                        <p>Мы используем только натуральные волокна: меринос, альпака, хлопок, шерсть. Каждый моток имеет этикетку с точным составом и рекомендациями по уходу.</p>
+                    </div>
+                    <div class="faq-item reveal">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">Как выбрать правильный размер спиц?</h3>
+                        <p>Размер спиц зависит от толщины пряжи и желаемой плотности вязания. На этикетке пряжи указаны рекомендуемые размеры спиц. Наши консультанты всегда помогут подобрать идеальный вариант.</p>
+                    </div>
+                    <div class="faq-item reveal">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">Есть ли доставка по всей России?</h3>
+                        <p>Да, мы доставляем заказы по всей России. Срок доставки зависит от региона: от 2 до 7 дней. При заказе от 3000 ₽ доставка бесплатная.</p>
+                    </div>
+                    <div class="faq-item reveal">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">Можно ли вернуть товар?</h3>
+                        <p>Да, вы можете вернуть товар в течение 14 дней после получения, если он не использовался и сохранён товарный вид. Для возврата свяжитесь с нашей поддержкой.</p>
+                    </div>
+                    <div class="faq-item reveal">
+                        <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">Как ухаживать за вязаными изделиями?</h3>
+                        <p>Рекомендуем ручная стирка при температуре не выше 30°C с мягким средством. Сушить изделия лучше в разложенном виде, избегая прямых солнечных лучей. Дополнительные советы по уходу указаны на этикетках пряжи.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- NEWSLETTER -->
+        <section class="newsletter">
+            <div class="container">
+                <h2>Подпишитесь на новости</h2>
+                <p>Получайте эксклюзивные предложения, уроки и вдохновение для вашего творчества</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="Ваш email" required>
+                    <button type="submit" class="newsletter-btn">Подписаться</button>
+                </form>
+                <div class="newsletter-success" id="newsletterSuccess">
+                    ✓ Спасибо за подписку! Мы отправили вам письмо с подтверждением.
                 </div>
             </div>
         </section>
@@ -630,6 +1301,270 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileNav = document.getElementById('mobileNav');
+            mobileNav.classList.toggle('active');
+            document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+        }
+
+        // Search Overlay
+        function openSearch() {
+            const searchOverlay = document.getElementById('searchOverlay');
+            searchOverlay.classList.add('active');
+            document.getElementById('searchInput').focus();
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSearch(event) {
+            const searchOverlay = document.getElementById('searchOverlay');
+            searchOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchResults').innerHTML = '';
+        }
+
+        // Search functionality
+        const products = [
+            { name: 'Пряжа меринос', category: 'Пряжа', price: '850 ₽' },
+            { name: 'Пряжа альпака', category: 'Пряжа', price: '1200 ₽' },
+            { name: 'Пряжа хлопок', category: 'Пряжа', price: '450 ₽' },
+            { name: 'Спицы деревянные', category: 'Спицы', price: '600 ₽' },
+            { name: 'Спицы стальные', category: 'Спицы', price: '450 ₽' },
+            { name: 'Крючок эргономичный', category: 'Крючки', price: '350 ₽' },
+            { name: 'Набор крючков', category: 'Крючки', price: '1200 ₽' },
+            { name: 'Маркеры петель', category: 'Аксессуары', price: '250 ₽' },
+            { name: 'Ножницы для вязания', category: 'Аксессуары', price: '400 ₽' },
+            { name: 'Сантиметровая лента', category: 'Аксессуары', price: '150 ₽' },
+            { name: 'Набор для начинающих', category: 'Наборы', price: '2500 ₽' },
+            { name: 'Пряжа шерсть', category: 'Пряжа', price: '700 ₽' },
+        ];
+
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+
+            if (query.length < 2) {
+                searchResults.innerHTML = '';
+                return;
+            }
+
+            const filteredProducts = products.filter(product =>
+                product.name.toLowerCase().includes(query) ||
+                product.category.toLowerCase().includes(query)
+            );
+
+            if (filteredProducts.length === 0) {
+                searchResults.innerHTML = '<div class="search-no-results">Товары не найдены</div>';
+                return;
+            }
+
+            searchResults.innerHTML = filteredProducts.map(product => `
+                <div class="search-result-item" onclick="selectProduct('${product.name}')">
+                    <div class="search-result-title">${product.name}</div>
+                    <div class="search-result-category">${product.category} • ${product.price}</div>
+                </div>
+            `).join('');
+        });
+
+        function selectProduct(productName) {
+            const product = products.find(p => p.name === productName);
+            if (product) {
+                addToCart(product);
+                alert(`"${productName}" добавлен в корзину`);
+            }
+            closeSearch();
+        }
+
+        // Cart functionality
+        let cart = [];
+
+        function toggleCart() {
+            const cartOverlay = document.getElementById('cartOverlay');
+            cartOverlay.classList.toggle('active');
+            document.body.style.overflow = cartOverlay.classList.contains('active') ? 'hidden' : '';
+        }
+
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.name === product.name);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCart();
+        }
+
+        function removeFromCart(productName) {
+            cart = cart.filter(item => item.name !== productName);
+            updateCart();
+        }
+
+        function updateQuantity(productName, change) {
+            const item = cart.find(item => item.name === productName);
+
+            if (item) {
+                item.quantity += change;
+
+                if (item.quantity <= 0) {
+                    removeFromCart(productName);
+                } else {
+                    updateCart();
+                }
+            }
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cartItems');
+            const cartCount = document.getElementById('cartCount');
+            const cartTotal = document.getElementById('cartTotal');
+
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            // Update cart items
+            if (cart.length === 0) {
+                cartItems.innerHTML = `
+                    <div class="cart-empty">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+                        <p>Ваша корзина пуста</p>
+                    </div>
+                `;
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <img src="${item.image || 'hurma-knit-010-2.jpg'}" alt="${item.name}" class="cart-item-image">
+                        <div class="cart-item-info">
+                            <div class="cart-item-name">${item.name}</div>
+                            <div class="cart-item-price">${item.price}</div>
+                            <div class="cart-item-controls">
+                                <button class="cart-qty-btn" onclick="updateQuantity('${item.name}', -1)">-</button>
+                                <span class="cart-qty">${item.quantity}</span>
+                                <button class="cart-qty-btn" onclick="updateQuantity('${item.name}', 1)">+</button>
+                                <button class="cart-item-remove" onclick="removeFromCart('${item.name}')" aria-label="Удалить">
+                                    <span class="material-symbols-outlined">delete</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+            }
+
+            // Update cart total
+            const total = cart.reduce((sum, item) => {
+                const price = parseInt(item.price.replace(/\D/g, ''));
+                return sum + (price * item.quantity);
+            }, 0);
+            cartTotal.textContent = `${total.toLocaleString('ru-RU')} ₽`;
+        }
+
+        function checkout() {
+            if (cart.length === 0) {
+                alert('Ваша корзина пуста');
+                return;
+            }
+            alert('Переход к оформлению заказа...');
+        }
+
+        // Newsletter functionality
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('input[type="email"]').value;
+            const successMessage = document.getElementById('newsletterSuccess');
+
+            // Simulate API call
+            setTimeout(() => {
+                successMessage.classList.add('show');
+                event.target.reset();
+
+                // Hide success message after 5 seconds
+                setTimeout(() => {
+                    successMessage.classList.remove('show');
+                }, 5000);
+            }, 500);
+        }
+
+        // Ripple effect for buttons
+        function createRipple(event) {
+            const button = event.currentTarget;
+            const circle = document.createElement('span');
+            const diameter = Math.max(button.clientWidth, button.clientHeight);
+            const radius = diameter / 2;
+
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${event.clientX - button.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${event.clientY - button.getBoundingClientRect().top - radius}px`;
+            circle.classList.add('ripple');
+
+            const ripple = button.getElementsByClassName('ripple')[0];
+            if (ripple) {
+                ripple.remove();
+            }
+
+            button.appendChild(circle);
+        }
+
+        // Add ripple effect to all buttons
+        document.querySelectorAll('.btn, .icon-btn, .cart-qty-btn').forEach(button => {
+            button.addEventListener('click', createRipple);
+        });
+
+        // Close search on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const searchOverlay = document.getElementById('searchOverlay');
+                const mobileNav = document.getElementById('mobileNav');
+                const cartOverlay = document.getElementById('cartOverlay');
+                if (searchOverlay.classList.contains('active')) {
+                    closeSearch();
+                }
+                if (mobileNav.classList.contains('active')) {
+                    toggleMobileMenu();
+                }
+                if (cartOverlay.classList.contains('active')) {
+                    toggleCart();
+                }
+            }
+        });
+
+        // Sticky Header & Back to Top Button
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            const backToTop = document.querySelector('.back-to-top');
+
+            // Sticky header
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+
+            // Back to top button
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        // Back to top functionality
+        document.querySelector('.back-to-top').addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
     </script>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Наверх">
+        <span class="material-symbols-outlined">arrow_upward</span>
+    </button>
 </body>
 </html>
