@@ -65,7 +65,7 @@
 
         /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
         body { 
             background-color: var(--bg-warm); 
             color: var(--text-dark); 
@@ -866,7 +866,8 @@
             border: 6px solid transparent;
             border-top-color: var(--bg-dark);
         }
-        .tooltip:hover .tooltip-text {
+        .tooltip:hover .tooltip-text,
+        .tooltip:focus-within .tooltip-text {
             visibility: visible;
             opacity: 1;
         }
@@ -883,9 +884,13 @@
         }
 
         @media (max-width: 768px) {
+            header { padding: 12px 0; }
+            header.scrolled { padding: 8px 0; }
+            .logo { font-size: 1.4rem; }
             .mobile-menu-btn { display: block; }
             .main-nav { display: none; }
-            .header-icons { display: flex; }
+            .header-icons { display: flex; gap: 8px; }
+            .breadcrumbs { padding: 70px 0 15px; }
             .hero-grid { grid-template-columns: 1fr; text-align: center; }
             .hero-content h1 { font-size: 2.2rem; }
             .hero-content p { font-size: 1rem; margin-left: auto; margin-right: auto; }
@@ -894,6 +899,10 @@
             .testimonials-grid { grid-template-columns: 1fr; }
             .atmosphere-grid { grid-template-columns: 1fr; }
             .section-padding { padding: 60px 0; }
+            .newsletter-form { flex-direction: column; gap: 12px; }
+            .newsletter-input, .newsletter-btn { width: 100%; }
+            .search-overlay { padding-top: 60px; }
+            .cart-overlay { max-width: 100%; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -981,7 +990,7 @@
         <!-- HERO -->
         <section class="hero">
             <div class="hero-bg">
-                <img src="hurma-knit-006-2.jpg" alt="Атмосфера вязания">
+                <img src="hurma-knit-006-2.jpg" alt="Атмосфера вязания" srcset="hurma-knit-006-2.jpg 320w, hurma-knit-006-2.jpg 640w, hurma-knit-006-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="eager">
             </div>
             <div class="container hero-grid">
                 <div class="hero-content reveal">
@@ -991,7 +1000,7 @@
                     <a href="#catalog" class="btn btn-primary">Перейти в каталог</a>
                 </div>
                 <div class="hero-image-box reveal">
-                    <img src="hurma-knit-006-2.jpg" alt="Атмосфера вязания: руки в теплом свитере держат спицы">
+                    <img src="hurma-knit-006-2.jpg" alt="Атмосфера вязания: руки в теплом свитере держат спицы" srcset="hurma-knit-006-2.jpg 320w, hurma-knit-006-2.jpg 640w, hurma-knit-006-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy">
                 </div>
             </div>
         </section>
@@ -1009,7 +1018,7 @@
         <section class="about section-padding" id="about">
             <div class="container about-grid">
                 <div class="about-img reveal">
-                    <img src="hurma-knit-009-2.jpg" alt="Уютное рабочее место с пряжей и инструментами для вязания" loading="lazy">
+                    <img src="hurma-knit-009-2.jpg" alt="Уютное рабочее место с пряжей и инструментами для вязания" srcset="hurma-knit-009-2.jpg 320w, hurma-knit-009-2.jpg 640w, hurma-knit-009-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy">
                 </div>
                 <div class="about-text reveal">
                     <span class="badge" style="background-color: #fdf2f0;">Наша философия</span>
@@ -1028,22 +1037,22 @@
                 </div>
                 <div class="categories-grid">
                     <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
-                        <img src="hurma-knit-010-2.jpg" alt="Мотки натуральной шерстяной пряжи для ручного вязания" loading="lazy" itemprop="image">
+                        <img src="hurma-knit-010-2.jpg" alt="Мотки натуральной шерстяной пряжи для ручного вязания" srcset="hurma-knit-010-2.jpg 320w, hurma-knit-010-2.jpg 640w, hurma-knit-010-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy" itemprop="image">
                         <h3 itemprop="name">Пряжа</h3>
                         <p itemprop="description">Меринос, альпака и хлопок в самых нежных оттенках.</p>
                     </div>
                     <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
-                        <img src="hurma-knit-004-2.jpg" alt="Деревянные вязальные спицы ручной работы" loading="lazy" itemprop="image">
+                        <img src="hurma-knit-004-2.jpg" alt="Деревянные вязальные спицы ручной работы" srcset="hurma-knit-004-2.jpg 320w, hurma-knit-004-2.jpg 640w, hurma-knit-004-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy" itemprop="image">
                         <h3 itemprop="name">Спицы</h3>
                         <p itemprop="description">Гладкие деревянные и стальные спицы для идеального скольжения.</p>
                     </div>
                     <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
-                        <img src="IMG_4679.jpg" alt="Эргономичные крючки для вязания с удобными ручками" loading="lazy" itemprop="image">
+                        <img src="IMG_4679.jpg" alt="Эргономичные крючки для вязания с удобными ручками" srcset="IMG_4679.jpg 320w, IMG_4679.jpg 640w, IMG_4679.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy" itemprop="image">
                         <h3 itemprop="name">Крючки</h3>
                         <p itemprop="description">Эргономичные ручки для тех, кто может вязать часами.</p>
                     </div>
                     <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
-                        <img src="hurma-knit-017-2.jpg" alt="Аксессуары для вязания: маркеры петель, ножницы, сантиметры" loading="lazy" itemprop="image">
+                        <img src="hurma-knit-017-2.jpg" alt="Аксессуары для вязания: маркеры петель, ножницы, сантиметры" srcset="hurma-knit-017-2.jpg 320w, hurma-knit-017-2.jpg 640w, hurma-knit-017-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy" itemprop="image">
                         <h3 itemprop="name">Аксессуары</h3>
                         <p itemprop="description">Маркеры, ножницы и сантиметры — красивые мелочи.</p>
                     </div>
@@ -1077,7 +1086,7 @@
                     </div>
                 </div>
                 <div class="adv-band reveal">
-                    <img src="hurma-knit-032.jpg" alt="Крупный план текстуры переплетения натуральных нитей пряжи" loading="lazy">
+                    <img src="hurma-knit-032.jpg" alt="Крупный план текстуры переплетения натуральных нитей пряжи" srcset="hurma-knit-032.jpg 320w, hurma-knit-032.jpg 640w, hurma-knit-032.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy">
                 </div>
             </div>
         </section>
@@ -1091,21 +1100,21 @@
                 </div>
                 <div class="audience-grid">
                     <div class="audience-card reveal">
-                        <img src="hurma-knit-003-2.jpg" alt="Новичок в вязании учится основам" loading="lazy">
+                        <img src="hurma-knit-003-2.jpg" alt="Новичок в вязании учится основам" srcset="hurma-knit-003-2.jpg 320w, hurma-knit-003-2.jpg 640w, hurma-knit-003-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy">
                         <div class="audience-overlay">
                             <h3>Для начинающих</h3>
                             <p>Понятные наборы и бережные советы.</p>
                         </div>
                     </div>
                     <div class="audience-card reveal">
-                        <img src="hurma-knit-028.jpg" alt="Опытный мастер за работой" loading="lazy">
+                        <img src="hurma-knit-028.jpg" alt="Опытный мастер за работой" srcset="hurma-knit-028.jpg 320w, hurma-knit-028.jpg 640w, hurma-knit-028.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy">
                         <div class="audience-overlay">
                             <h3>Для профессионалов</h3>
                             <p>Эксклюзивные составы и редкие инструменты.</p>
                         </div>
                     </div>
                     <div class="audience-card reveal">
-                        <img src="hurma-knit-025.jpg" alt="Уютная атмосфера релаксации через хобби" loading="lazy">
+                        <img src="hurma-knit-025.jpg" alt="Уютная атмосфера релаксации через хобби" srcset="hurma-knit-025.jpg 320w, hurma-knit-025.jpg 640w, hurma-knit-025.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy">
                         <div class="audience-overlay">
                             <h3>Для искателей покоя</h3>
                             <p>Медитативный процесс как форма терапии.</p>
@@ -1126,7 +1135,7 @@
                 <div class="testimonials-grid">
                     <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
                         <div class="testimonial-avatar">
-                            <img src="hurma-knit-022.JPG" alt="Фото Анны М., довольной клиентки магазина Хурма вяжет" loading="lazy" itemprop="image">
+                            <img src="hurma-knit-022.JPG" alt="Фото Анны М., довольной клиентки магазина Хурма вяжет" srcset="hurma-knit-022.JPG 320w, hurma-knit-022.JPG 640w, hurma-knit-022.JPG 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy" itemprop="image">
                         </div>
                         <div class="testimonial-content" itemprop="reviewBody">
                             <p>"Пряжа от Хурмы — это любовь с первого мотка. Цвета невероятные, а на ощупь просто мечта. Связала свое первое платье и не могу остановиться!"</p>
@@ -1140,7 +1149,7 @@
                     </div>
                     <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
                         <div class="testimonial-avatar">
-                            <img src="hurma-knit-023-2.jpg" alt="Фото Марины К., участницы совместного вязания" loading="lazy" itemprop="image">
+                            <img src="hurma-knit-023-2.jpg" alt="Фото Марины К., участницы совместного вязания" srcset="hurma-knit-023-2.jpg 320w, hurma-knit-023-2.jpg 640w, hurma-knit-023-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy" itemprop="image">
                         </div>
                         <div class="testimonial-content" itemprop="reviewBody">
                             <p>"Совместный проект с девочками из Хурмы вдохновил меня на новые идеи. Спицы идеально скользят, а поддержка сообщества бесценна."</p>
@@ -1154,7 +1163,7 @@
                     </div>
                     <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
                         <div class="testimonial-avatar">
-                            <img src="hurma-knit-031.jpg" alt="Фото Елены В., постоянной клиентки магазина" loading="lazy" itemprop="image">
+                            <img src="hurma-knit-031.jpg" alt="Фото Елены В., постоянной клиентки магазина" srcset="hurma-knit-031.jpg 320w, hurma-knit-031.jpg 640w, hurma-knit-031.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy" itemprop="image">
                         </div>
                         <div class="testimonial-content" itemprop="reviewBody">
                             <p>"Нашла здесь не только материалы, но и друзей. Каждый мастер-класс — это погружение в атмосферу уюта и творчества. Рекомендую всем!"</p>
@@ -1179,13 +1188,13 @@
                 </div>
                 <div class="atmosphere-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
                     <div class="atmosphere-card reveal">
-                        <img src="hurma-knit-018-2.jpg" alt="Уютная атмосфера вязания с чашкой чая" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
+                        <img src="hurma-knit-018-2.jpg" alt="Уютная атмосфера вязания с чашкой чая" srcset="hurma-knit-018-2.jpg 320w, hurma-knit-018-2.jpg 640w, hurma-knit-018-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
                     </div>
                     <div class="atmosphere-card reveal">
-                        <img src="hurma-knit-020-2.jpg" alt="Мотки пряжи в теплых тонах" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
+                        <img src="hurma-knit-020-2.jpg" alt="Мотки пряжи в теплых тонах" srcset="hurma-knit-020-2.jpg 320w, hurma-knit-020-2.jpg 640w, hurma-knit-020-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
                     </div>
                     <div class="atmosphere-card reveal">
-                        <img src="hurma-knit-021-2.jpg" alt="Руки мастера за вязанием" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
+                        <img src="hurma-knit-021-2.jpg" alt="Руки мастера за вязанием" srcset="hurma-knit-021-2.jpg 320w, hurma-knit-021-2.jpg 640w, hurma-knit-021-2.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
                     </div>
                 </div>
             </div>
@@ -1200,7 +1209,7 @@
                         <p>Ваш первый (или сотый) проект начинается с качественного выбора. Мы подготовили всё, что нужно для вашего вдохновения.</p>
                         <a href="#" class="btn btn-white">За покупками</a>
                     </div>
-                    <img src="hurma-knit-030.jpg" class="cta-image" alt="Процесс начала нового вязания с пряжей" loading="lazy">
+                    <img src="hurma-knit-030.jpg" class="cta-image" alt="Процесс начала нового вязания с пряжей" srcset="hurma-knit-030.jpg 320w, hurma-knit-030.jpg 640w, hurma-knit-030.jpg 1024w" sizes="(max-width: 320px) 280px, (max-width: 640px) 560px, (max-width: 1024px) 900px, 1024px" loading="lazy">
                 </div>
             </div>
         </section>
@@ -1212,7 +1221,7 @@
                     <span class="badge">Частые вопросы</span>
                     <h2>Ответы на ваши вопросы</h2>
                 </div>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 30px;">
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;">
                     <div class="faq-item reveal">
                         <h3 style="color: var(--primary); margin-bottom: 15px; font-size: 1.3rem;">Какой состав пряжи?</h3>
                         <p>Мы используем только натуральные волокна: меринос, альпака, хлопок, шерсть. Каждый моток имеет этикетку с точным составом и рекомендациями по уходу.</p>
