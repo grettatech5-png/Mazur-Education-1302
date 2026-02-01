@@ -1,94 +1,119 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Python | Python Software Developer</title>
+    <meta name="description" content="Хурма вяжет — магазин пряжи, спиц и крючков для ручного вязания. Натуральные материалы, уютная атмосфера, доставка по всей России.">
+    <meta name="keywords" content="пряжа, спицы, крючки, вязание, рукоделие, магазин пряжи, шерсть, меринос">
+    <meta property="og:title" content="Хурма вяжет — Магазин твоего уюта и вдохновения">
+    <meta property="og:description" content="Пространство для тех, кто ценит тактильность, натуральные материалы и тихую радость созидания">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="hurma-knit-006-2.jpg">
+    <title>Хурма вяжет — Магазин твоего уюта и вдохновения</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧶</text></svg>">
+    <!-- Google Fonts: Humanist Sans and Serif for a soft, professional look -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <!-- Schema.org Organization -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Хурма вяжет",
+        "description": "Магазин пряжи и инструментов для ручного вязания",
+        "url": "https://hurma-knits.ru",
+        "logo": "hurma-knit-006-2.jpg",
+        "contactPoint": {
+            "@type": "ContactPoint",
+            "telephone": "+7-999-123-45-67",
+            "contactType": "customer service",
+            "email": "hello@hurma-knits.ru"
+        },
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "ул. Уютная, 14",
+            "addressLocality": "Москва",
+            "addressCountry": "RU"
+        }
+    }
+    </script>
     
     <style>
         /* CSS VARIABLES */
         :root {
-            --primary: #3776AB;  /* Python Blue */
-            --secondary: #FFD43B; /* Python Yellow */
-            --dark: #1a1a2e;
-            --darker: #0f0f1a;
-            --light: #e8e8e8;
-            --gray: #888888;
-            --card-bg: #242438;
-            --text: #e8e8e8;
-            --text-muted: #a0a0a0;
-            --font-main: 'Inter', sans-serif;
-            --font-code: 'JetBrains Mono', monospace;
+            --persimmon: #D46A4F; /* Primary: Warm Orange/Terracotta */
+            --persimmon-light: #E89B88;
+            --emerald: #2D6A4F;    /* Secondary: Deep Emerald */
+            --emerald-light: #D8E2DC;
+            --bg-warm: #FAF7F2;    /* Creamy off-white */
+            --text-dark: #333333;
+            --text-muted: #555555;
+            --white: #FFFFFF;
+            --font-main: 'Nunito', sans-serif;
+            --font-heading: 'Lora', serif;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --radius: 24px;
+            --radius-sm: 12px;
+            --container: 1100px;
         }
 
         /* RESET & BASE */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
         body { 
-            background-color: var(--darker);
-            color: var(--text);
-            font-family: var(--font-main);
+            background-color: var(--bg-warm); 
+            color: var(--text-dark); 
+            font-family: var(--font-main); 
             line-height: 1.6;
             overflow-x: hidden;
         }
 
-        h1, h2, h3, h4 { font-weight: 600; line-height: 1.2; }
-        h1 { font-size: clamp(2.5rem, 5vw, 4rem); }
-        h2 { font-size: clamp(2rem, 4vw, 2.8rem); }
-        h3 { font-size: 1.5rem; }
-        p { color: var(--text-muted); font-weight: 400; }
+        h1, h2, h3 { font-family: var(--font-heading); font-weight: 500; line-height: 1.2; }
+        p { font-weight: 400; color: var(--text-muted); }
         a { text-decoration: none; color: inherit; transition: var(--transition); }
         ul { list-style: none; }
-        
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        .section-padding { padding: 100px 0; }
+        img { max-width: 100%; display: block; border-radius: var(--radius-sm); object-fit: cover; }
 
+        .container { max-width: var(--container); margin: 0 auto; padding: 0 20px; }
+        .section-padding { padding: 100px 0; }
+        
         /* REUSABLE COMPONENTS */
         .btn {
             display: inline-block;
-            padding: 14px 32px;
-            border-radius: 8px;
-            font-weight: 600;
+            padding: 16px 36px;
+            border-radius: 50px;
+            font-weight: 700;
             text-align: center;
             cursor: pointer;
             border: none;
             font-family: var(--font-main);
             font-size: 1rem;
-            transition: var(--transition);
         }
 
         .btn-primary { 
-            background-color: var(--primary);
-            color: var(--white);
+            background-color: var(--persimmon); 
+            color: var(--white); 
+            box-shadow: 0 4px 15px rgba(212, 106, 79, 0.3);
         }
         .btn-primary:hover { 
-            background-color: #2d6a9f;
+            background-color: var(--persimmon-light); 
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 106, 79, 0.4);
         }
-
-        .btn-outline { 
-            background-color: transparent;
-            color: var(--text);
-            border: 2px solid var(--primary);
-        }
-        .btn-outline:hover { 
-            background-color: var(--primary);
-        }
+        .btn-primary:active { transform: translateY(0); }
 
         .badge {
             display: inline-block;
             padding: 6px 16px;
-            background-color: rgba(55, 118, 171, 0.15);
-            color: var(--primary);
+            background-color: var(--emerald-light);
+            color: var(--emerald);
             border-radius: 20px;
             font-size: 0.85rem;
-            font-weight: 500;
+            font-weight: 700;
             margin-bottom: 15px;
-            font-family: var(--font-code);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         /* SCROLL ANIMATION */
@@ -104,387 +129,224 @@
 
         /* HEADER */
         header { 
-            padding: 20px 0; 
-            position: fixed; 
+            padding: 30px 0; 
+            position: absolute; 
             width: 100%; 
-            z-index: 1000;
-            background-color: rgba(15, 15, 26, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            z-index: 10; 
         }
         .nav-wrapper { display: flex; justify-content: space-between; align-items: center; }
         .logo { 
-            font-family: var(--font-code);
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text);
+            font-family: var(--font-heading); 
+            font-size: 1.8rem; 
+            color: var(--persimmon); 
+            font-weight: 600; 
             display: flex;
             align-items: center;
             gap: 10px;
         }
-        .logo span { color: var(--primary); }
-        .logo-icon {
-            width: 35px;
-            height: 35px;
-            background: linear-gradient(135deg, var(--primary) 50%, var(--secondary) 50%);
-            border-radius: 8px;
+        .logo::before {
+            content: '';
+            width: 12px; height: 12px;
+            background-color: var(--emerald);
+            border-radius: 50%;
         }
-        .main-nav { display: flex; align-items: center; gap: 30px; }
-        .main-nav a { 
-            font-weight: 500; 
-            font-size: 0.95rem; 
-            color: var(--text-muted);
-        }
-        .main-nav a:hover { color: var(--primary); }
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-        .menu-toggle span { width: 25px; height: 2px; background: var(--text); }
+        .main-nav a { font-weight: 600; font-size: 0.95rem; margin-left: 30px; }
+        .main-nav a:hover { color: var(--emerald); }
 
         /* HERO SECTION */
-        .hero { 
-            min-height: 100vh; 
-            display: flex; 
+        .hero {
+            min-height: 100vh;
+            display: flex;
             align-items: center;
-            padding-top: 80px;
+            padding-top: 100px;
             position: relative;
-            overflow: hidden;
         }
-        .hero::before {
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center top;
+        }
+        .hero-bg::after {
             content: '';
             position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(55, 118, 171, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(250, 247, 242, 0.95) 0%, rgba(250, 247, 242, 0.7) 50%, rgba(250, 247, 242, 0.3) 100%);
         }
-        .hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 80px; align-items: center; }
-        .hero-content h1 { margin-bottom: 25px; }
-        .hero-content h1 .highlight { color: var(--primary); }
-        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; max-width: 550px; }
-        .hero-buttons { display: flex; gap: 15px; flex-wrap: wrap; }
-        .hero-code {
-            background: var(--dark);
-            border-radius: 12px;
-            padding: 30px;
-            font-family: var(--font-code);
-            font-size: 0.9rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            position: relative;
-        }
-        .code-line { display: block; margin-bottom: 8px; }
-        .code-keyword { color: var(--primary); }
-        .code-function { color: var(--secondary); }
-        .code-string { color: #98c379; }
-        .code-comment { color: var(--gray); }
-        .code-bracket { color: #56b6c2; }
+        .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .hero-content h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 25px; color: var(--text-dark); }
+        .hero-content p { font-size: 1.2rem; margin-bottom: 40px; max-width: 500px; }
+        .hero-image-box { display: none; }
 
         /* ABOUT SECTION */
-        .about { background-color: var(--dark); }
+        .about { background-color: var(--white); border-radius: 80px 0 80px 0; }
         .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-        .about-text h2 { margin-bottom: 20px; }
-        .about-text p { margin-bottom: 20px; font-size: 1.05rem; }
-        .about-stats { display: flex; gap: 40px; margin-top: 30px; }
-        .stat-item h3 { font-size: 2.5rem; color: var(--primary); font-family: var(--font-code); }
-        .stat-item p { font-size: 0.9rem; }
-        .about-image { position: relative; }
-        .about-image-box {
-            width: 100%;
-            height: 400px;
-            background: linear-gradient(135deg, var(--primary) 0%, #1a1a2e 100%);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-        .python-logo {
-            width: 150px;
-            height: 150px;
-            background: var(--secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-code);
-            font-size: 3rem;
-            font-weight: 700;
-            color: var(--dark);
-        }
+        .about-text h2 { font-size: 2.8rem; margin-bottom: 20px; }
+        .about-text p { font-size: 1.1rem; margin-bottom: 20px; }
+        .about-img img { height: 450px; width: 100%; border-radius: var(--radius); }
 
-        /* SKILLS SECTION */
-        .skills-grid { 
+        /* CATEGORIES */
+        .categories-grid { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
             gap: 30px; 
             margin-top: 50px; 
         }
-        .skill-card {
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 16px;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .skill-card:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--primary);
-        }
-        .skill-icon {
-            width: 50px;
-            height: 50px;
-            background: rgba(55, 118, 171, 0.15);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-        .skill-card h3 { margin-bottom: 12px; }
-        .skill-card p { font-size: 0.95rem; }
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-        .skill-tag {
-            padding: 4px 12px;
-            background: rgba(55, 118, 171, 0.1);
-            color: var(--primary);
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-family: var(--font-code);
-        }
-
-        /* PROJECTS SECTION */
-        .projects { background-color: var(--dark); }
-        .projects-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); 
-            gap: 30px; 
-            margin-top: 50px; 
-        }
-        .project-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-        }
-        .project-card:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--primary);
-        }
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, #2d2d4a 0%, var(--dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-family: var(--font-code);
-            font-size: 3rem;
-            color: var(--primary);
-        }
-        .project-content { padding: 25px; }
-        .project-content h3 { margin-bottom: 12px; }
-        .project-content p { font-size: 0.95rem; margin-bottom: 20px; }
-        .project-links { display: flex; gap: 15px; }
-        .project-link {
-            padding: 8px 16px;
-            background: var(--primary);
-            color: var(--white);
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 500;
-        }
-        .project-link:hover { opacity: 0.9; }
-        .project-link.secondary { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
-        .project-link.secondary:hover { background: var(--primary); color: var(--white); }
-
-        /* EXPERIENCE SECTION */
-        .timeline { max-width: 800px; margin: 50px auto 0; }
-        .timeline-item {
-            position: relative;
-            padding-left: 40px;
-            padding-bottom: 40px;
-            border-left: 2px solid rgba(55, 118, 171, 0.3);
-        }
-        .timeline-item:last-child { border-left: none; }
-        .timeline-dot {
-            position: absolute;
-            left: -9px;
-            top: 0;
-            width: 16px;
-            height: 16px;
-            background: var(--primary);
-            border-radius: 50%;
-            border: 3px solid var(--darker);
-        }
-        .timeline-date {
-            font-family: var(--font-code);
-            font-size: 0.85rem;
-            color: var(--primary);
-            margin-bottom: 8px;
-        }
-        .timeline-item h3 { margin-bottom: 8px; }
-        .timeline-item h4 { 
-            font-weight: 500; 
-            color: var(--secondary); 
-            margin-bottom: 12px;
-            font-size: 1rem;
-        }
-        .timeline-item p { font-size: 0.95rem; }
-        .timeline-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 15px; }
-
-        /* SERVICES SECTION */
-        .services-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
-            gap: 30px; 
-            margin-top: 50px; 
-        }
-        .service-card {
-            background: var(--card-bg);
-            padding: 40px 30px;
-            border-radius: 16px;
+        .category-card {
+            background: var(--white);
+            padding: 20px;
+            border-radius: var(--radius);
             text-align: center;
             transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(0,0,0,0.03);
         }
-        .service-card:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--primary);
-        }
-        .service-icon {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-        .service-card h3 { margin-bottom: 15px; }
-        .service-card p { font-size: 0.95rem; }
+        .category-card:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
+        .category-card img { width: 100%; height: 200px; border-radius: var(--radius-sm); margin-bottom: 20px; }
+        .category-card h3 { margin-bottom: 10px; color: var(--persimmon); }
 
-        /* CONTACT SECTION */
-        .contact { background-color: var(--dark); }
-        .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; }
-        .contact-info h2 { margin-bottom: 20px; }
-        .contact-info p { margin-bottom: 30px; }
-        .contact-methods { margin-bottom: 30px; }
-        .contact-method {
+        /* ADVANTAGES */
+        .advantages { background-color: #F3EFE9; }
+        .adv-header { text-align: center; margin-bottom: 60px; }
+        .adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; }
+        .adv-item { text-align: center; }
+        .adv-item h4 { font-family: var(--font-main); font-weight: 700; margin-bottom: 10px; font-size: 1.1rem; }
+        .adv-band { width: 100%; height: 300px; margin-top: 60px; border-radius: var(--radius); overflow: hidden; }
+        .adv-band img { width: 100%; height: 100%; }
+
+        /* AUDIENCE */
+        .audience-header { text-align: center; margin-bottom: 50px; }
+        .audience-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .audience-card { position: relative; overflow: hidden; border-radius: var(--radius); height: 350px; }
+        .audience-card img { width: 100%; height: 100%; transition: transform 0.5s ease; }
+        .audience-card:hover img { transform: scale(1.1); }
+        .audience-overlay { 
+            position: absolute; bottom: 0; left: 0; right: 0; 
+            padding: 30px; background: linear-gradient(transparent, rgba(0,0,0,0.7)); 
+            color: var(--white); 
+        }
+        .audience-overlay h3 { color: var(--white); font-family: var(--font-main); font-weight: 600; font-size: 1.2rem; }
+
+        /* TESTIMONIALS */
+        .testimonials { background-color: var(--white); }
+        .testimonials-header { text-align: center; margin-bottom: 60px; }
+        .testimonials-header h2 { font-size: 2.5rem; margin-bottom: 15px; }
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .testimonial-card {
+            background: var(--bg-warm);
+            padding: 35px;
+            border-radius: var(--radius);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+        }
+        .testimonial-content p {
+            font-size: 1.1rem;
+            line-height: 1.7;
+            color: var(--text-dark);
+            font-style: italic;
+            margin-bottom: 25px;
+        }
+        .testimonial-content p::before {
+            content: '"';
+            font-size: 3rem;
+            color: var(--persimmon);
+            line-height: 1;
+            display: block;
+            margin-bottom: -15px;
+            opacity: 0.5;
+        }
+        .testimonial-author {
             display: flex;
             align-items: center;
             gap: 15px;
-            margin-bottom: 20px;
         }
-        .contact-method-icon {
+        .author-avatar {
             width: 50px;
             height: 50px;
-            background: rgba(55, 118, 171, 0.15);
-            border-radius: 10px;
+            background: var(--persimmon);
+            color: var(--white);
+            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
+            font-weight: 700;
             font-size: 1.2rem;
         }
-        .contact-method h4 { font-size: 1rem; margin-bottom: 4px; }
-        .contact-method p { font-size: 0.9rem; }
-        .social-links { display: flex; gap: 15px; }
-        .social-link {
-            width: 45px;
-            height: 45px;
-            background: var(--card-bg);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .social-link:hover { background: var(--primary); border-color: var(--primary); }
-        
-        .contact-form {
-            background: var(--card-bg);
-            padding: 40px;
-            border-radius: 16px;
-        }
-        .form-group { margin-bottom: 20px; }
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 0.9rem;
-        }
-        .form-group input,
-        .form-group textarea {
-            width: 100%;
-            padding: 14px 18px;
-            background: var(--dark);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-            color: var(--text);
+        .author-info h4 {
             font-family: var(--font-main);
-            font-size: 1rem;
-            transition: var(--transition);
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 3px;
         }
-        .form-group input:focus,
-        .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary);
+        .author-info span {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
-        .form-group textarea { min-height: 140px; resize: vertical; }
+
+        /* ATMOSPHERE */
+        .atmosphere { text-align: center; }
+        .atmosphere-img {
+            width: 100%; height: 600px;
+            border-radius: var(--radius);
+            box-shadow: 0 40px 80px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+
+        /* FINAL CTA */
+        .final-cta { text-align: center; }
+        .cta-box { 
+            background: var(--emerald); 
+            padding: 80px 40px; 
+            border-radius: var(--radius); 
+            color: var(--white);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 40px;
+            text-align: left;
+        }
+        .cta-box h2 { color: var(--white); font-size: 2.5rem; margin-bottom: 20px; }
+        .cta-box p { color: rgba(255,255,255,0.8); margin-bottom: 30px; font-size: 1.1rem; }
+        .cta-image { height: 350px; width: 100%; border-radius: var(--radius-sm); }
+        .btn-white { background: var(--white); color: var(--emerald); }
+        .btn-white:hover { background: var(--bg-warm); }
 
         /* FOOTER */
-        footer { 
-            padding: 60px 0 30px; 
-            background: var(--darker);
-            border-top: 1px solid rgba(255, 255, 255, 0.05);
-        }
-        .footer-grid { 
-            display: flex; 
-            justify-content: space-between; 
-            align-items: center; 
-            margin-bottom: 40px; 
-        }
-        .footer-logo { 
-            font-family: var(--font-code); 
-            font-size: 1.3rem; 
-            font-weight: 700;
-        }
-        .footer-logo span { color: var(--primary); }
-        .footer-nav { display: flex; gap: 30px; }
-        .footer-nav a { color: var(--text-muted); font-size: 0.9rem; }
-        .footer-nav a:hover { color: var(--primary); }
-        .footer-bottom { 
-            text-align: center; 
-            padding-top: 30px; 
-            border-top: 1px solid rgba(255, 255, 255, 0.05); 
-            font-size: 0.85rem;
-            color: var(--gray);
-        }
+        footer { padding: 80px 0 40px; background: #2b2b2b; color: #a0a0a0; }
+        .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+        .footer-logo { color: var(--persimmon); font-size: 1.5rem; margin-bottom: 20px; font-family: var(--font-heading); }
+        .footer-nav h5 { color: var(--white); margin-bottom: 20px; font-size: 1.1rem; }
+        .footer-nav li { margin-bottom: 12px; }
+        .footer-nav a:hover { color: var(--persimmon); }
+        .footer-decoration { width: 100%; height: 60px; opacity: 0.1; background-image: url('https://www.transparenttextures.com/patterns/knitted-net.png'); }
 
         /* RESPONSIVE */
         @media (max-width: 992px) {
-            .hero-grid, .about-grid, .contact-grid { grid-template-columns: 1fr; }
-            .hero-code { display: none; }
-            .footer-grid { flex-direction: column; gap: 20px; text-align: center; }
-        }
-
-        @media (max-width: 768px) {
-            .main-nav { display: none; }
-            .menu-toggle { display: flex; }
-            .section-padding { padding: 60px 0; }
-            .hero-content p { font-size: 1rem; }
-            .about-stats { flex-direction: column; gap: 20px; }
-            .projects-grid { grid-template-columns: 1fr; }
-            
-            .main-nav.active {
-                display: flex;
-                flex-direction: column;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--darker);
-                padding: 20px;
-                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            }
+            .hero-grid, .about-grid, .cta-box { grid-template-columns: 1fr; text-align: center; }
+            .hero-content p, .about-text p { margin-left: auto; margin-right: auto; }
+            .audience-grid { grid-template-columns: 1fr; }
+            .hero-image-box { order: -1; }
+            .about-img { order: -1; }
+            .cta-image { display: none; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -496,47 +358,31 @@
 
     <header>
         <div class="container nav-wrapper">
-            <a href="#" class="logo">
-                <div class="logo-icon"></div>
-                <span>Py</span>Dev
-            </a>
-            <nav class="main-nav" id="mainNav">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#experience">Experience</a>
-                <a href="#contact" class="btn btn-primary" style="padding: 10px 25px;">Contact</a>
+            <a href="#" class="logo">Хурма вяжет</a>
+            <nav class="main-nav">
+                <a href="#about">О нас</a>
+                <a href="#catalog">Каталог</a>
+                <a href="#advantages">Почему мы</a>
+                <a href="#" class="btn btn-primary" style="padding: 10px 25px; margin-left: 20px;">Магазин</a>
             </nav>
-            <div class="menu-toggle" id="menuToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
         </div>
     </header>
 
     <main>
         <!-- HERO -->
         <section class="hero">
+            <div class="hero-bg">
+                <img src="hurma-knit-006-2.jpg" alt="Атмосфера вязания">
+            </div>
             <div class="container hero-grid">
                 <div class="hero-content reveal">
-                    <span class="badge"><Hello World /></span>
-                    <h1>Hi, I'm <span class="highlight">Alex</span></h1>
-                    <h3 style="color: var(--secondary); margin-bottom: 20px; font-weight: 400;">Python Software Developer</h3>
-                    <p>I craft efficient, scalable, and elegant solutions with Python. Passionate about clean code, automation, and building tools that make a difference.</p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View Projects</a>
-                        <a href="#contact" class="btn btn-outline">Get In Touch</a>
-                    </div>
+                    <span class="badge">Ручная работа</span>
+                    <h1>Вязание как способ замедлиться</h1>
+                    <p>«Хурма вяжет» — это пространство для тех, кто ценит тактильность, натуральные материалы и тихую радость созидания.</p>
+                    <a href="#catalog" class="btn btn-primary">Перейти в каталог</a>
                 </div>
-                <div class="hero-code reveal">
-                    <span class="code-line"><span class="code-keyword">def</span> <span class="code-function">create_solution</span>():</span>
-                    <span class="code-line" style="padding-left: 20px;"><span class="code-keyword">return</span> <span class="code-string">"Efficiency + Scalability"</span></span>
-                    <span class="code-line" style="margin-top: 15px;"><span class="code-keyword">class</span> <span class="code-bracket">Developer</span>:</span>
-                    <span class="code-line" style="padding-left: 20px;"><span class="code-function">__init__</span>(self):</span>
-                    <span class="code-line" style="padding-left: 40px;">self.<span class="code-keyword">skills</span> = [<span class="code-string">"Python"</span>, <span class="code-string">"Django"</span>, <span class="code-string">"APIs"</span>]</span>
-                    <span class="code-line" style="padding-left: 20px;">self.<span class="code-function">passion</span> = <span class="code-keyword">True</span></span>
-                    <span class="code-line" style="margin-top: 10px;"><span class="code-comment"># Always learning, always creating</span></span>
+                <div class="hero-image-box reveal">
+                    <img src="hurma-knit-006-2.jpg" alt="Атмосфера вязания: руки в теплом свитере держат спицы">
                 </div>
             </div>
         </section>
@@ -544,270 +390,193 @@
         <!-- ABOUT -->
         <section class="about section-padding" id="about">
             <div class="container about-grid">
-                <div class="about-image reveal">
-                    <div class="about-image-box">
-                        <div class="python-logo">Py</div>
-                    </div>
+                <div class="about-img reveal">
+                    <img src="hurma-knit-009-2.jpg" alt="Уютное рабочее место с пряжей и инструментами для вязания" loading="lazy">
                 </div>
                 <div class="about-text reveal">
-                    <span class="badge">About Me</span>
-                    <h2>Passionate About Python</h2>
-                    <p>With over 5 years of experience in software development, I've specialized in Python because of its elegance, versatility, and powerful ecosystem.</p>
-                    <p>I believe in writing code that's not just functional, but maintainable. My approach combines technical excellence with practical business solutions.</p>
-                    <div class="about-stats">
-                        <div class="stat-item">
-                            <h3>5+</h3>
-                            <p>Years Experience</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>50+</h3>
-                            <p>Projects Completed</p>
-                        </div>
-                        <div class="stat-item">
-                            <h3>30+</h3>
-                            <p>Happy Clients</p>
-                        </div>
-                    </div>
+                    <span class="badge" style="background-color: #fdf2f0;">Наша философия</span>
+                    <h2>Любовь в каждой петле</h2>
+                    <p>Мы верим, что в мире высоких скоростей вязание остается островком спокойствия. Наша миссия — обеспечить вас инструментами, которые не просто работают, а приносят эстетическое и тактильное удовольствие.</p>
+                    <p>Мы тщательно отбираем пряжу с честным составом и инструменты, которые станут продолжением ваших рук.</p>
                 </div>
             </div>
         </section>
 
-        <!-- SKILLS -->
-        <section class="section-padding" id="skills">
+        <!-- PRODUCT CATEGORIES -->
+        <section class="section-padding" id="catalog" itemscope itemtype="https://schema.org/ItemList">
             <div class="container">
                 <div style="text-align: center; margin-bottom: 50px;">
-                    <span class="badge">Expertise</span>
-                    <h2>Technical Skills</h2>
+                    <h2 style="font-size: 2.5rem;">Все для творчества</h2>
                 </div>
-                <div class="skills-grid">
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">🐍</div>
-                        <h3>Python Development</h3>
-                        <p>Expert-level Python with focus on clean architecture, best practices, and performance optimization.</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Clean Code</span>
-                            <span class="skill-tag">Type Hints</span>
-                            <span class="skill-tag">Async/Await</span>
+                <div class="categories-grid">
+                    <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
+                        <img src="hurma-knit-010-2.jpg" alt="Мотки натуральной шерстяной пряжи для ручного вязания" loading="lazy" itemprop="image">
+                        <h3 itemprop="name">Пряжа</h3>
+                        <p itemprop="description">Меринос, альпака и хлопок в самых нежных оттенках.</p>
+                    </div>
+                    <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
+                        <img src="hurma-knit-004-2.jpg" alt="Деревянные вязальные спицы ручной работы" loading="lazy" itemprop="image">
+                        <h3 itemprop="name">Спицы</h3>
+                        <p itemprop="description">Гладкие деревянные и стальные спицы для идеального скольжения.</p>
+                    </div>
+                    <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
+                        <img src="IMG_4679.jpg" alt="Эргономичные крючки для вязания с удобными ручками" loading="lazy" itemprop="image">
+                        <h3 itemprop="name">Крючки</h3>
+                        <p itemprop="description">Эргономичные ручки для тех, кто может вязать часами.</p>
+                    </div>
+                    <div class="category-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Product">
+                        <img src="hurma-knit-017-2.jpg" alt="Аксессуары для вязания: маркеры петель, ножницы, сантиметры" loading="lazy" itemprop="image">
+                        <h3 itemprop="name">Аксессуары</h3>
+                        <p itemprop="description">Маркеры, ножницы и сантиметры — красивые мелочи.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ADVANTAGES -->
+        <section class="advantages section-padding" id="advantages">
+            <div class="container">
+                <div class="adv-header reveal">
+                    <span class="badge">Преимущества</span>
+                    <h2>Почему выбирают Хурму</h2>
+                </div>
+                <div class="adv-grid">
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">01. Состав</h4>
+                        <p>Только натуральные волокна. Мы лично тестируем каждую партию на износостойкость.</p>
+                    </div>
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">02. Комфорт</h4>
+                        <p>Инструменты, которые не утомляют кисти и превращают процесс в отдых.</p>
+                    </div>
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">03. Поддержка</h4>
+                        <p>Мы поможем выбрать пряжу под ваш проект, даже если вы только учитесь.</p>
+                    </div>
+                    <div class="adv-item reveal">
+                        <h4 style="color: var(--emerald);">04. Эко-подход</h4>
+                        <p>Бережная упаковка без лишнего пластика — забота о природе и эстетика.</p>
+                    </div>
+                </div>
+                <div class="adv-band reveal">
+                    <img src="hurma-knit-032.jpg" alt="Крупный план текстуры переплетения натуральных нитей пряжи" loading="lazy">
+                </div>
+            </div>
+        </section>
+
+        <!-- WHO THIS IS FOR -->
+        <section class="section-padding">
+            <div class="container">
+                <div class="audience-header reveal">
+                    <h2>Вязание объединяет</h2>
+                    <p>Наш магазин создан для каждого, кто ищет гармонию</p>
+                </div>
+                <div class="audience-grid">
+                    <div class="audience-card reveal">
+                        <img src="hurma-knit-003-2.jpg" alt="Новичок в вязании учится основам" loading="lazy">
+                        <div class="audience-overlay">
+                            <h3>Для начинающих</h3>
+                            <p>Понятные наборы и бережные советы.</p>
                         </div>
                     </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">🌐</div>
-                        <h3>Web Frameworks</h3>
-                        <p>Building robust web applications with Django and Flask, from APIs to full-stack solutions.</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">Django</span>
-                            <span class="skill-tag">Flask</span>
-                            <span class="skill-tag">FastAPI</span>
+                    <div class="audience-card reveal">
+                        <img src="hurma-knit-028.jpg" alt="Опытный мастер за работой" loading="lazy">
+                        <div class="audience-overlay">
+                            <h3>Для профессионалов</h3>
+                            <p>Эксклюзивные составы и редкие инструменты.</p>
                         </div>
                     </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">🗄️</div>
-                        <h3>Database Design</h3>
-                        <p>Designing efficient database schemas and writing optimized queries for PostgreSQL, MySQL, and MongoDB.</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">Redis</span>
-                            <span class="skill-tag">SQLAlchemy</span>
-                        </div>
-                    </div>
-                    <div class="skill-card reveal">
-                        <div class="skill-icon">⚡</div>
-                        <h3>Automation & APIs</h3>
-                        <p>Creating efficient APIs and automating workflows with Python scripts and CI/CD pipelines.</p>
-                        <div class="skill-tags">
-                            <span class="skill-tag">REST</span>
-                            <span class="skill-tag">GraphQL</span>
-                            <span class="skill-tag">Docker</span>
+                    <div class="audience-card reveal">
+                        <img src="hurma-knit-025.jpg" alt="Уютная атмосфера релаксации через хобби" loading="lazy">
+                        <div class="audience-overlay">
+                            <h3>Для искателей покоя</h3>
+                            <p>Медитативный процесс как форма терапии.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- PROJECTS -->
-        <section class="projects section-padding" id="projects">
+        <!-- TESTIMONIALS -->
+        <section class="section-padding testimonials" id="testimonials" itemscope itemtype="https://schema.org/ItemList">
+            <div class="container">
+                <div class="testimonials-header reveal">
+                    <span class="badge">Отзывы</span>
+                    <h2>Истории наших друзей</h2>
+                    <p>Участники совместных проектов делятся своими впечатлениями</p>
+                </div>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+                        <div class="testimonial-content" itemprop="reviewBody">
+                            <p>"Пряжа от Хурмы — это любовь с первого мотка. Цвета невероятные, а на ощупь просто мечта. Связала свой первый свитер и не могу остановиться!"</p>
+                        </div>
+                        <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <img src="hurma-knit-022.JPG" alt="Фото Анны М., довольной клиентки магазина Хурма вяжет" class="author-avatar" style="border-radius: 50%; object-fit: cover;" loading="lazy" itemprop="image">
+                            <div class="author-info">
+                                <h4 itemprop="name">Анна М.</h4>
+                                <span>Участница проекта "Осень в моих руках"</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+                        <div class="testimonial-content" itemprop="reviewBody">
+                            <p>"Совместный проект с девочками из Хурмы вдохновил меня на новые идеи. Спицы идеально скользят, а поддержка сообщества бесценна."</p>
+                        </div>
+                        <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <img src="hurma-knit-023-2.jpg" alt="Фото Марины К., участницы совместного вязания" class="author-avatar" style="border-radius: 50%; object-fit: cover;" loading="lazy" itemprop="image">
+                            <div class="author-info">
+                                <h4 itemprop="name">Марина К.</h4>
+                                <span>Участница совместного вязания</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card reveal" itemprop="itemListElement" itemscope itemtype="https://schema.org/Review">
+                        <div class="testimonial-content" itemprop="reviewBody">
+                            <p>"Нашла здесь не только материалы, но и друзей. Каждый мастер-класс — это погружение в атмосферу уюта и творчества. Рекомендую всем!"</p>
+                        </div>
+                        <div class="testimonial-author" itemprop="author" itemscope itemtype="https://schema.org/Person">
+                            <img src="hurma-knit-021.jpg" alt="Фото Елены В., постоянной клиентки магазина" class="author-avatar" style="border-radius: 50%; object-fit: cover;" loading="lazy" itemprop="image">
+                            <div class="author-info">
+                                <h4 itemprop="name">Елена В.</h4>
+                                <span>Постоянная клиентка</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ATMOSPHERE -->
+        <section class="section-padding atmosphere">
             <div class="container">
                 <div style="text-align: center; margin-bottom: 50px;">
-                    <span class="badge">Portfolio</span>
-                    <h2>Featured Projects</h2>
+                    <span class="badge">Вдохновение</span>
+                    <h2>Почувствуйте ритм</h2>
                 </div>
-                <div class="projects-grid">
-                    <div class="project-card reveal">
-                        <div class="project-image">📊</div>
-                        <div class="project-content">
-                            <h3>Data Analytics Dashboard</h3>
-                            <p>Real-time analytics platform built with Django, PostgreSQL, and Chart.js. Processes millions of data points daily.</p>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link secondary">GitHub</a>
-                            </div>
-                        </div>
+                <div class="atmosphere-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px;">
+                    <div class="atmosphere-card reveal">
+                        <img src="hurma-knit-018-2.jpg" alt="Уютная атмосфера вязания с чашкой чая" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
                     </div>
-                    <div class="project-card reveal">
-                        <div class="project-image">🛒</div>
-                        <div class="project-content">
-                            <h3>E-Commerce API</h3>
-                            <p>Scalable RESTful API for e-commerce with FastAPI, featuring payment integration and inventory management.</p>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link secondary">GitHub</a>
-                            </div>
-                        </div>
+                    <div class="atmosphere-card reveal">
+                        <img src="hurma-knit-020-2.jpg" alt="Мотки пряжи в теплых тонах" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
                     </div>
-                    <div class="project-card reveal">
-                        <div class="project-image">🤖</div>
-                        <div class="project-content">
-                            <h3>ML Pipeline Automator</h3>
-                            <p>Automated machine learning pipeline using Python, scikit-learn, and Airflow for model training and deployment.</p>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link secondary">GitHub</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="project-card reveal">
-                        <div class="project-image">📱</div>
-                        <div class="project-content">
-                            <h3>Task Management App</h3>
-                            <p>Full-stack task management application with Django, Vue.js, and WebSocket for real-time updates.</p>
-                            <div class="project-links">
-                                <a href="#" class="project-link">Live Demo</a>
-                                <a href="#" class="project-link secondary">GitHub</a>
-                            </div>
-                        </div>
+                    <div class="atmosphere-card reveal">
+                        <img src="hurma-knit-021-2.jpg" alt="Руки мастера за вязанием" style="width: 100%; height: 500px; object-fit: cover; border-radius: var(--radius);" loading="lazy">
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- EXPERIENCE -->
-        <section class="section-padding" id="experience">
+        <!-- FINAL CTA -->
+        <section class="section-padding final-cta">
             <div class="container">
-                <div style="text-align: center; margin-bottom: 50px;">
-                    <span class="badge">Background</span>
-                    <h2>Work Experience</h2>
-                </div>
-                <div class="timeline">
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">2022 - Present</div>
-                        <h3>Senior Python Developer</h3>
-                        <h4>TechCorp Solutions</h4>
-                        <p>Leading backend development for enterprise applications. Architected microservices using Django and FastAPI. Mentoring junior developers and implementing best practices.</p>
-                        <div class="timeline-tags">
-                            <span class="skill-tag">Django</span>
-                            <span class="skill-tag">PostgreSQL</span>
-                            <span class="skill-tag">Docker</span>
-                            <span class="skill-tag">AWS</span>
-                        </div>
+                <div class="cta-box reveal">
+                    <div class="cta-text">
+                        <h2>Готовы начать свою историю?</h2>
+                        <p>Ваш первый (или сотый) проект начинается с качественного выбора. Мы подготовили всё, что нужно для вашего вдохновения.</p>
+                        <a href="#" class="btn btn-white">За покупками</a>
                     </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">2020 - 2022</div>
-                        <h3>Python Developer</h3>
-                        <h4>StartupHub Inc.</h4>
-                        <p>Developed and maintained RESTful APIs for a fast-growing startup. Implemented data processing pipelines and automated testing workflows.</p>
-                        <div class="timeline-tags">
-                            <span class="skill-tag">Flask</span>
-                            <span class="skill-tag">MongoDB</span>
-                            <span class="skill-tag">Redis</span>
-                            <span class="skill-tag">CI/CD</span>
-                        </div>
-                    </div>
-                    <div class="timeline-item reveal">
-                        <div class="timeline-dot"></div>
-                        <div class="timeline-date">2018 - 2020</div>
-                        <h3>Junior Python Developer</h3>
-                        <h4>WebAgency Co.</h4>
-                        <p>Built web applications and automation scripts for clients. Gained strong foundation in Python, Django, and database design.</p>
-                        <div class="timeline-tags">
-                            <span class="skill-tag">Django</span>
-                            <span class="skill-tag">MySQL</span>
-                            <span class="skill-tag">Celery</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SERVICES -->
-        <section class="section-padding services" id="services">
-            <div class="container">
-                <div style="text-align: center; margin-bottom: 50px;">
-                    <span class="badge">What I Do</span>
-                    <h2>Services</h2>
-                </div>
-                <div class="services-grid">
-                    <div class="service-card reveal">
-                        <div class="service-icon">💻</div>
-                        <h3>Web Development</h3>
-                        <p>Custom web applications built with Django, Flask, or FastAPI tailored to your needs.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon">🔧</div>
-                        <h3>Automation Scripts</h3>
-                        <p>Automate repetitive tasks and streamline your workflows with Python scripts.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon">📈</div>
-                        <h3>API Development</h3>
-                        <p>RESTful and GraphQL APIs that are fast, secure, and well-documented.</p>
-                    </div>
-                    <div class="service-card reveal">
-                        <div class="service-icon">🐳</div>
-                        <h3>DevOps & Deployment</h3>
-                        <p>Docker containerization, CI/CD pipelines, and cloud deployment on AWS/GCP.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT -->
-        <section class="contact section-padding" id="contact">
-            <div class="container">
-                <div class="contact-grid">
-                    <div class="contact-info reveal">
-                        <span class="badge">Get In Touch</span>
-                        <h2>Let's Work Together</h2>
-                        <p>Have a project in mind? I'd love to hear about it. Drop me a message and let's create something amazing.</p>
-                        <div class="contact-methods">
-                            <div class="contact-method">
-                                <div class="contact-method-icon">✉️</div>
-                                <div>
-                                    <h4>Email</h4>
-                                    <p>alex@pythondev.com</p>
-                                </div>
-                            </div>
-                            <div class="contact-method">
-                                <div class="contact-method-icon">📍</div>
-                                <div>
-                                    <h4>Location</h4>
-                                    <p>San Francisco, CA</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="social-links">
-                            <a href="#" class="social-link">GH</a>
-                            <a href="#" class="social-link">LI</a>
-                            <a href="#" class="social-link">TW</a>
-                            <a href="#" class="social-link">SO</a>
-                        </div>
-                    </div>
-                    <form class="contact-form reveal">
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" id="name" placeholder="Your name">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" placeholder="your@email.com">
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Message</label>
-                            <textarea id="message" placeholder="Tell me about your project..."></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary" style="width: 100%;">Send Message</button>
-                    </form>
+                    <img src="hurma-knit-030.jpg" class="cta-image" alt="Процесс начала нового вязания с пряжей" loading="lazy">
                 </div>
             </div>
         </section>
@@ -816,16 +585,31 @@
     <footer>
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-logo"><span>Py</span>Dev Portfolio</div>
-                <nav class="footer-nav">
-                    <a href="#about">About</a>
-                    <a href="#skills">Skills</a>
-                    <a href="#projects">Projects</a>
-                    <a href="#contact">Contact</a>
-                </nav>
+                <div class="footer-info">
+                    <div class="footer-logo">Хурма вяжет</div>
+                    <p>Магазин для тех, кто создает тепло своими руками. Мы доставляем радость и качественные материалы по всей стране.</p>
+                </div>
+                <div class="footer-nav">
+                    <h5>Навигация</h5>
+                    <ul>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#catalog">Пряжа</a></li>
+                        <li><a href="#advantages">Почему мы</a></li>
+                        <li><a href="#">Доставка</a></li>
+                    </ul>
+                </div>
+                <div class="footer-nav">
+                    <h5>Контакты</h5>
+                    <ul>
+                        <li>г. Москва, ул. Уютная, 14</li>
+                        <li>hello@hurma-knits.ru</li>
+                        <li>+7 (999) 123-45-67</li>
+                    </ul>
+                </div>
             </div>
-            <div class="footer-bottom">
-                &copy; 2024 Alex Python. Built with Python & ❤️
+            <div class="footer-decoration"></div>
+            <div style="text-align: center; font-size: 0.8rem; margin-top: 40px;">
+                &copy; 2024 Хурма вяжет. Сделано с теплом.
             </div>
         </div>
     </footer>
@@ -846,20 +630,6 @@
         }, observerOptions);
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mainNav = document.getElementById('mainNav');
-
-        menuToggle.addEventListener('click', () => {
-            mainNav.classList.toggle('active');
-        });
-
-        // Form Submission (prevent default for demo)
-        document.querySelector('.contact-form').addEventListener('submit', (e) => {
-            e.preventDefault();
-            alert('Thanks for your message! This is a demo form.');
-        });
     </script>
 </body>
 </html>
